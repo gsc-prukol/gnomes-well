@@ -82,23 +82,23 @@ public class Gnome : MonoBehaviour
             {
                 part.ApplyDamageSprite(type);
             }
-
-            part.Detach();
-
-            if (type == DamageType.Slicing)
-            {
-                Transform bloodFountanPosition = part.bloodFountainOrigin;
-                if (bloodFountanPosition != null && bloodFountainPrefab != null)
-                {
-                    GameObject fountain = Instantiate(bloodFountainPrefab, bloodFountanPosition.position, bloodFountanPosition.rotation);
-                    fountain.transform.SetParent(this.cameraFollowTarget, false);
-                }
-            }
                 
             bool shouldDetach = Random.Range(0, 2) == 0;
 
             if (shouldDetach)
             {
+                part.Detach();
+
+                if (type == DamageType.Slicing)
+                {
+                    Transform bloodFountanPosition = part.bloodFountainOrigin;
+                    if (bloodFountanPosition != null && bloodFountainPrefab != null)
+                    {
+                        GameObject fountain = Instantiate(bloodFountainPrefab, bloodFountanPosition.position, bloodFountanPosition.rotation);
+                        fountain.transform.SetParent(this.cameraFollowTarget, false);
+                    }
+                }
+
                 var allJoints = part.GetComponentsInChildren<Joint2D>();
 
                 foreach (Joint2D joint in allJoints)

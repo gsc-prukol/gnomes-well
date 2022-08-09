@@ -8,10 +8,10 @@ public class RemoveAfterDelay : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        StartCoroutine(nameof(Remove));
+        StartCoroutine(Remove());
     }
 
-    private IEnumerable Remove()
+    private IEnumerator Remove()
     {
         yield return new WaitForSeconds(delay);
 
